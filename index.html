@@ -33,11 +33,21 @@
               </a>
             </div>
 
+            <button
+              id="navbarMenuToggle"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-label="Toggle navbar menu"
+              class="navbar-menu-btn"
+            > 
+              <span class="icon" aria-hidden="true">
+                <span class="fas fa-bars"></span>
+              </span>
+            </button>
             <nav
               id="navbarMenu"
-              class="navbar-menu"
+              class="navbar-menu d-none"
               aria-label="Main navigation"
-              aria-owns="contactsLink"
             >
               <ul
                 class="navbar-end list-unstyled list-inline"
@@ -132,13 +142,6 @@
                 </li>
               </ul>
             </nav>
-
-            <a href="#" class="button is-white is-outlined" id="contactsLink">
-              <span class="icon" aria-hidden="true">
-                <span class="fas fa-phone"></span>
-              </span>
-              <span>Contacts</span>
-            </a>
           </div>
         </div>
       </div>

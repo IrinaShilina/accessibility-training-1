@@ -116,6 +116,10 @@ function getTabFromEl(el) {
   return el.getElementsByClassName("tab")[0];
 }
 
+const navbarMenuToggleBtn = document.getElementById("navbarMenuToggle");
+const navbarMenu = document.getElementById("navbarMenu");
+const navbarMenuItems = document.getElementById("navbarMenu");
+
 const navMenuBtn = document.getElementById("navMenuBtn");
 const navMenu = document.getElementById("navMenu");
 const navMenuItems = document.querySelectorAll('#navMenu [role="menuitem"]');
@@ -129,16 +133,33 @@ navBarItems.forEach((item, index) => {
   }
 });
 
+navbarMenuToggleBtn.onclick = (e) => {
+  console.log("!");
+  e.preventDefault();
+  toggleNavbarMenu();
+};
+
+function toggleNavbarMenu() {
+  const isMenuHidden = navbarMenu.classList.contains("d-none");
+  navMenuBtn.setAttribute("aria-expanded", !isMenuHidden);
+  navbarMenu.classList.toggle("d-none");
+  navbarMenu.classList.toggle("d-block");
+
+  if (isMenuHidden) {
+    navBarItems[0].focus();
+  }
+}
+
 navMenuBtn.addEventListener("click", (e) => {
   e.preventDefault();
   toggleNavMenu();
 });
 
 navMenuBtn.addEventListener("keydown", (e) => {
-  e.preventDefault();
   const key = e.keyCode;
 
   if (key === keys.space || key === keys.enter) {
+    e.preventDefault();
     toggleNavMenu();
     navMenuItems[0].focus();
   }
@@ -158,8 +179,6 @@ function toggleNavMenu() {
   if (newNavMenuState) {
     navMenuItems[0].focus();
   }
-
-  isNavMenuOpened = newNavMenuState;
 }
 
 function handleKeyboardBtnPressedOnMenuItem(e, index) {
